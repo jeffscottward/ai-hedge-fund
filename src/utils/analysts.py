@@ -19,6 +19,7 @@ from src.agents.rakesh_jhunjhunwala import rakesh_jhunjhunwala_agent
 from src.agents.mohnish_pabrai import mohnish_pabrai_agent
 from src.agents.nassim_taleb import nassim_taleb_agent
 from src.agents.news_sentiment import news_sentiment_agent
+from src.agents.nicholas_crown import nicholas_crown_agent
 from src.agents.growth_agent import growth_analyst_agent
 
 # Define analyst configuration - single source of truth
@@ -127,13 +128,21 @@ ANALYST_CONFIG = {
         "type": "analyst",
         "order": 12,
     },
+    "nicholas_crown": {
+        "display_name": "Nicholas Crown",
+        "description": "The Real-Return Risk Analyst",
+        "investing_style": "Focuses on what investors actually keep after volatility, inflation, taxes, fees, and balance sheet risk, emphasizing durable cash flow and downside control.",
+        "agent_func": nicholas_crown_agent,
+        "type": "analyst",
+        "order": 13,
+    },
     "technical_analyst": {
         "display_name": "Technical Analyst",
         "description": "Chart Pattern Specialist",
         "investing_style": "Focuses on chart patterns and market trends to make investment decisions, often using technical indicators and price action analysis.",
         "agent_func": technical_analyst_agent,
         "type": "analyst",
-        "order": 13,
+        "order": 14,
     },
     "fundamentals_analyst": {
         "display_name": "Fundamentals Analyst",
@@ -141,7 +150,7 @@ ANALYST_CONFIG = {
         "investing_style": "Delves into financial statements and economic indicators to assess the intrinsic value of companies through fundamental analysis.",
         "agent_func": fundamentals_analyst_agent,
         "type": "analyst",
-        "order": 14,
+        "order": 15,
     },
     "growth_analyst": {
         "display_name": "Growth Analyst",
@@ -149,7 +158,7 @@ ANALYST_CONFIG = {
         "investing_style": "Analyzes growth trends and valuation to identify growth opportunities through growth analysis.",
         "agent_func": growth_analyst_agent,
         "type": "analyst",
-        "order": 15,
+        "order": 16,
     },
     "news_sentiment_analyst": {
         "display_name": "News Sentiment Analyst",
@@ -157,7 +166,7 @@ ANALYST_CONFIG = {
         "investing_style": "Analyzes news sentiment to predict market movements and identify opportunities through news analysis.",
         "agent_func": news_sentiment_agent,
         "type": "analyst",
-        "order": 16,
+        "order": 17,
     },
     "sentiment_analyst": {
         "display_name": "Sentiment Analyst",
@@ -165,7 +174,7 @@ ANALYST_CONFIG = {
         "investing_style": "Gauges market sentiment and investor behavior to predict market movements and identify opportunities through behavioral analysis.",
         "agent_func": sentiment_analyst_agent,
         "type": "analyst",
-        "order": 17,
+        "order": 18,
     },
     "valuation_analyst": {
         "display_name": "Valuation Analyst",
@@ -173,7 +182,7 @@ ANALYST_CONFIG = {
         "investing_style": "Specializes in determining the fair value of companies, using various valuation models and financial metrics for investment decisions.",
         "agent_func": valuation_analyst_agent,
         "type": "analyst",
-        "order": 18,
+        "order": 19,
     },
 }
 
