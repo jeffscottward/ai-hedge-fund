@@ -1,7 +1,11 @@
+import asyncio
+import logging
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import logging
-import asyncio
 
 from app.backend.routes import api_router
 from app.backend.database.connection import engine
@@ -12,6 +16,21 @@ from app.backend.services.ollama_service import ollama_service
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+ROOT_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT_DIR / ".env")
+
+DEFAULT_FRONTEND_ORIGINS = (
+    "http://localhost:7100,"
+    "http://127.0.0.1:7100,"
+    "http://localhost:5173,"
+    "http://127.0.0.1:5173"
+)
+frontend_origins = [
+    origin.strip()
+    for origin in os.getenv("FRONTEND_ORIGINS", DEFAULT_FRONTEND_ORIGINS).split(",")
+    if origin.strip()
+]
+
 app = FastAPI(title="AI Hedge Fund API", description="Backend API for AI Hedge Fund", version="0.1.0")
 
 # Initialize database tables (this is safe to run multiple times)
@@ -20,7 +39,7 @@ Base.metadata.create_all(bind=engine)
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Frontend URLs
+    allow_origins=frontend_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
