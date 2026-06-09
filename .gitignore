@@ -36,6 +36,7 @@ ENV/
 .cursorrules
 .cursorignore
 .cursorindexingignore
+.maestro/history/*.local.jsonl
 
 # OS
 .DS_Store
